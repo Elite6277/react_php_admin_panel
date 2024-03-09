@@ -1,30 +1,9 @@
-import $ from "jquery"
+import React, { StrictMode } from "react"
+import ReactDOM from "react-dom/client"
+import Editor from "./components/editor/editor"
 
-function getPgaeList() {
-  $("h1").remove()
-  $.get(
-    "./api",
-    (data) => {
-      data.forEach((file) => {
-        $("body").append(`<h1>${file}</h1>`)
-      })
-    },
-    "JSON"
-  )
-}
-
-getPgaeList()
-
-$("button").click(() => {
-  $.post(
-    "./api/createNewPage.php",
-    {
-      name: $("input").val(),
-    },
-    () => {
-      getPgaeList()
-    }
-  ).fail(() => {
-    alert("Страница уже существует")
-  })
-})
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <StrictMode>
+    <Editor />
+  </StrictMode>
+)
